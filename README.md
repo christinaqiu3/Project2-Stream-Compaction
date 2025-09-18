@@ -116,15 +116,15 @@ This project includes four parts:
 
 blockSize = 128
 
-![Data](images/graph1_t.png)
-![Graph](images/graph1_v.png)
+![Data](img/graph1_t.png)
+![Graph](img/graph1_v.png)
 
 ### Size of Array v. Runtime of Scan (Non Power of 2) Graph
 
 blockSize = 128
 
-![Data](images/graph2_t.png)
-![Graph](images/graph2_v.png)
+![Data](img/graph2_t.png)
+![Graph](img/graph2_v.png)
 
 Conclusion: 
 
@@ -142,15 +142,15 @@ Work Efficient GPU scan performs two kernels per iteration (upsweep and downswee
 
 blockSize = 128
 
-![Data](images/graph3_t.png)
-![Graph](images/graph3_v.png)
+![Data](img/graph3_t.png)
+![Graph](img/graph3_v.png)
 
 ### Size of Array v. Runtime of Stream Compaction (Non Power of 2) Graph
 
 blockSize = 128
 
-![Data](images/graph4_t.png)
-![Graph](images/graph4_v.png)
+![Data](img/graph4_t.png)
+![Graph](img/graph4_v.png)
 
 Conclusion: As expected, the CPU implementation’s runtime increases rapidly with array size (particularly beyond 2^21). In contrast, the work-efficient GPU implementation shows much better scaling, with runtimes increasing much more slowly as array size grows. For smaller sizes (e.g. 2^18 - 2^20), the CPU is actually slightly faster, likely due to lower kernel launch overhead. But this quickly flips as data size increases. This shows why GPU acceleration is critical for real-time or high-volume applications involving stream compaction.
 
@@ -162,15 +162,15 @@ Conclusion: As expected, the CPU implementation’s runtime increases rapidly wi
 
 Array Size = 2^20
 
-![Data](images/graph5_t.png)
-![Graph](images/graph5_v.png)
+![Data](img/graph5_t.png)
+![Graph](img/graph5_v.png)
 
 ### Blocksize v. Runtime of Scan (Non Power of 2) Graph
 
 Array Size = 2^20
 
-![Data](images/graph6_t.png)
-![Graph](images/graph6_v.png)
+![Data](img/graph6_t.png)
+![Graph](img/graph6_v.png)
 
 Conclusion: The optimal block size for scan is mid-range (128). Runtimes degrade with both very small and very large blocks, due to either insufficient parallelism or limited warp scheduling capacity. Non-power-of-two inputs introduce negligible overhead, indicating that the scan logic (including padding and bounds checking) is both correct and efficient.
 
