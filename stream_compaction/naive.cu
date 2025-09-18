@@ -49,7 +49,7 @@ namespace StreamCompaction {
             cudaMemcpy(dev_in + 1, idata, (n - 1) * sizeof(int), cudaMemcpyHostToDevice); // shift input right by one
             cudaMemset(dev_in, 0, sizeof(int)); // setting first elem to 0 for exclusive
 
-            int numThreads = 128;
+            int numThreads = 64;
             int numBlocks = (n + numThreads - 1) / numThreads;
 
             int logn = ilog2ceil(n);

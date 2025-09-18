@@ -156,22 +156,22 @@ Conclusion: As expected, the CPU implementation’s runtime increases rapidly wi
 
 ## 
 
-2. Hypothesis:
+2. Hypothesis: The choice of block size in a GPU kernel greatly affects performance due to how it maps to the hardware's available threads and memory resources. Smaller block sizes may lead to underutilized GPU cores, while overly large blocks can cause increased register and shared memory pressure, reducing occupancy. We expect optimal performance at moderate block sizes, such as 128 or 256, which strike a balance between these factors.
 
-### Blocksize v. Runtime of Scan Method (Power of 2) Graph
+### Blocksize v. Runtime of Scan (Power of 2) Graph
 
 Array Size = 2^20
 
-![Data](images/graph1_t.png)
-![Graph](images/graph1_v.png)
+![Data](images/graph5_t.png)
+![Graph](images/graph5_v.png)
 
 ### Blocksize v. Runtime of Scan (Non Power of 2) Graph
 
 Array Size = 2^20
 
-![Data](images/graph2_t.png)
-![Graph](images/graph2_v.png)
+![Data](images/graph6_t.png)
+![Graph](images/graph6_v.png)
 
-Conclusion: 
+Conclusion: The optimal block size for scan is mid-range (128). Runtimes degrade with both very small and very large blocks, due to either insufficient parallelism or limited warp scheduling capacity. Non-power-of-two inputs introduce negligible overhead, indicating that the scan logic (including padding and bounds checking) is both correct and efficient.
 
 
